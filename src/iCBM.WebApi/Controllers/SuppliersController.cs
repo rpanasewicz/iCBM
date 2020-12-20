@@ -7,20 +7,20 @@ namespace iCBM.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ExpensesController : ControllerBase
+    public class SuppliersController : ControllerBase
     {
         private readonly ICommandDispatcher _commandDispatcher;
 
-        public ExpensesController(ICommandDispatcher commandDispatcher)
+        public SuppliersController(ICommandDispatcher commandDispatcher)
         {
             _commandDispatcher = commandDispatcher;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNewExpense(AddExpenseCommand cmd)
+        public async Task<IActionResult> CreateNewSupplier(AddSupplierCommand cmd)
         {
             var result = await _commandDispatcher.SendAsync(cmd);
-            return Created($"/expenses/{result:N}", result);
+            return Created($"/suppliers/{result:N}", result);
         }
     }
 }

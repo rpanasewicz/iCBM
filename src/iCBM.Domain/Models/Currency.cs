@@ -188,7 +188,6 @@ namespace iCBM.Domain.Models
 
         #endregion
 
-        internal Currency() : base(0, "Undefined") { } // For EF
         public Currency(int id, string name) : base(id, name)
         {
         }

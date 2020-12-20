@@ -4,7 +4,7 @@ namespace iCBM.Domain.Models
 {
     public class Money
     {
-        public decimal Amount { get; }
+        public decimal Amount { get; private set; }
         public int CurrencyId { get; private set; }
 
         public Currency Currency

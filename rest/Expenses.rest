@@ -9,5 +9,6 @@ Content-Type:  application/json
   "description": "This is my very first expense",
   "amount": 100.23,
   "currency": "PLN",
-  "expenseTime": "2020-12-20T13:47:04.143Z"
+  "expenseTime": "2020-12-20T13:47:04.143Z",
+  "suppilerId": "00000000-0000-0000-0000-000000000000"
 }

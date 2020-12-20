@@ -948,6 +948,12 @@ namespace iCBM.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("CreatedOn");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpenseTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("ExpirationDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("ExpirationDate");
@@ -962,13 +968,66 @@ namespace iCBM.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("ModifiedOn");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("SupplierId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("Expenses");
                 });
 
+            modelBuilder.Entity("iCBM.Domain.Models.Supplier", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)")
+                        .HasColumnName("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedOn");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ExpirationDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ExpirationDate");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)")
+                        .HasColumnName("ModifiedBy");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ModifiedOn");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Supplier");
+                });
+
             modelBuilder.Entity("iCBM.Domain.Models.Expense", b =>
                 {
+                    b.HasOne("iCBM.Domain.Models.Supplier", "Supplier")
+                        .WithMany("Expenses")
+                        .HasForeignKey("SupplierId");
+
                     b.OwnsOne("iCBM.Domain.Models.Money", "Amount", b1 =>
                         {
                             b1.Property<Guid>("ExpenseId")
@@ -992,6 +1051,61 @@ namespace iCBM.Infrastructure.Migrations
                         });
 
                     b.Navigation("Amount");
+
+                    b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("iCBM.Domain.Models.Supplier", b =>
+                {
+                    b.OwnsOne("iCBM.Domain.Models.ContactDetails", "ContactDetails", b1 =>
+                        {
+                            b1.Property<Guid>("SupplierId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("AddressLine1")
+                                .HasMaxLength(248)
+                                .HasColumnType("nvarchar(248)")
+                                .HasColumnName("AddressLine1");
+
+                            b1.Property<string>("AddressLine2")
+                                .HasMaxLength(248)
+                                .HasColumnType("nvarchar(248)")
+                                .HasColumnName("AddressLine2");
+
+                            b1.Property<string>("City")
+                                .HasMaxLength(32)
+                                .HasColumnType("nvarchar(32)")
+                                .HasColumnName("City");
+
+                            b1.Property<string>("EmailAddress")
+                                .HasMaxLength(248)
+                                .HasColumnType("nvarchar(248)")
+                                .HasColumnName("EmailAddress");
+
+                            b1.Property<string>("PhoneNumber")
+                                .HasMaxLength(16)
+                                .HasColumnType("nvarchar(16)")
+                                .HasColumnName("PhoneNumber");
+
+                            b1.Property<string>("Zipcode")
+                                .HasMaxLength(8)
+                                .HasColumnType("nvarchar(8)")
+                                .HasColumnName("Zipcode");
+
+                            b1.HasKey("SupplierId");
+
+                            b1.ToTable("Supplier");
+
+                            b1.WithOwner()
+                                .HasForeignKey("SupplierId");
+                        });
+
+                    b.Navigation("ContactDetails");
+                });
+
+            modelBuilder.Entity("iCBM.Domain.Models.Supplier", b =>
+                {
+                    b.Navigation("Expenses");
                 });
 #pragma warning restore 612, 618
         }

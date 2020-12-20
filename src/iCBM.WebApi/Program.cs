@@ -58,6 +58,7 @@ namespace iCBM.WebApi
                         {
                             c.SchemaGeneratorOptions = new SchemaGeneratorOptions()
                             {
+                                SchemaFilters = new List<ISchemaFilter>() { new IgnoreReadOnlySchemaFilter() }
                             };
                             c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp1", Version = "v1" });
                         });
@@ -89,7 +90,7 @@ namespace iCBM.WebApi
                         c.RoutePrefix = string.Empty;
                         c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApp1 v1");
                     });
-                    
+
                     app.UseHttpsRedirection();
                     app.UseRouting();
                     app.UseAuthorization();

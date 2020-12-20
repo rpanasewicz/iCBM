@@ -1,0 +1,16 @@
+@url = https://localhost:5001/suppilers
+
+###
+POST {{url}}
+Content-Type:  application/json
+
+{
+  "name": "Castodelma",
+  "description": "Castolelma DIY store.",
+  "addressLine1": "Szkolna 14",
+  "addressLine2": null,
+  "zipcode": "15-000",
+  "city": "Białystok",
+  "phoneNumber": "+48123456789",
+  "emailAddress": "sklep@castodelma.com"
+}

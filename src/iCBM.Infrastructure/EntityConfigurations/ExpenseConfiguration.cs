@@ -28,6 +28,9 @@ namespace iCBM.Infrastructure.EntityConfigurations
 
         public override void ConfigureRelationships(EntityTypeBuilder<Expense> entity)
         {
+            entity.HasOne(e => e.Supplier)
+                .WithMany(e => e.Expenses)
+                .HasForeignKey(e => e.SupplierId);
         }
 
         public override IEnumerable<Expense> SeedData => new List<Expense>();

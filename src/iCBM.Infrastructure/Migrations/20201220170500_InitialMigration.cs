@@ -1,39 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace iCBM.Infrastructure.Migrations
 {
-    public partial class Mig4 : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "ModifiedBy",
-                table: "Expenses",
-                type: "nvarchar(32)",
-                maxLength: 32,
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "CreatedBy",
-                table: "Expenses",
-                type: "nvarchar(32)",
-                maxLength: 32,
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "Amount_CurrencyId",
-                table: "Expenses",
-                type: "int",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "Currencies",
                 columns: table => new
@@ -44,6 +17,58 @@ namespace iCBM.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Currencies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Supplier",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressLine1 = table.Column<string>(type: "nvarchar(248)", maxLength: 248, nullable: true),
+                    AddressLine2 = table.Column<string>(type: "nvarchar(248)", maxLength: 248, nullable: true),
+                    Zipcode = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: true),
+                    City = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true),
+                    EmailAddress = table.Column<string>(type: "nvarchar(248)", maxLength: 248, nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Supplier", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Expenses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Amount = table.Column<decimal>(type: "decimal(38,2)", precision: 38, scale: 2, nullable: true),
+                    CurrencyId = table.Column<int>(type: "int", nullable: true),
+                    ExpenseTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SupplierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Expenses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Expenses_Supplier_SupplierId",
+                        column: x => x.SupplierId,
+                        principalTable: "Supplier",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -259,6 +284,11 @@ namespace iCBM.Infrastructure.Migrations
                     { 332, "HTG" },
                     { 999, "XXX" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Expenses_SupplierId",
+                table: "Expenses",
+                column: "SupplierId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -266,27 +296,11 @@ namespace iCBM.Infrastructure.Migrations
             migrationBuilder.DropTable(
                 name: "Currencies");
 
-            migrationBuilder.DropColumn(
-                name: "Amount_CurrencyId",
-                table: "Expenses");
+            migrationBuilder.DropTable(
+                name: "Expenses");
 
-            migrationBuilder.AlterColumn<string>(
-                name: "ModifiedBy",
-                table: "Expenses",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(32)",
-                oldMaxLength: 32);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "CreatedBy",
-                table: "Expenses",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(32)",
-                oldMaxLength: 32);
+            migrationBuilder.DropTable(
+                name: "Supplier");
         }
     }
 }

@@ -12,5 +12,6 @@ namespace iCBM.Application
     {
         DbSet<Expense> Expenses { get; set; }
         DbSet<Currency> Currencies { get; set; }
+        DbSet<Supplier> Suppliers { get; set; }
     }
 }
