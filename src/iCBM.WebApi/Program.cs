@@ -16,6 +16,7 @@ using Serilog;
 using System.Threading.Tasks;
 using iCBM.Application;
 using iCBM.WebApi.SchemaFilters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -43,6 +44,8 @@ namespace iCBM.WebApi
                     services
                         .AddSqlContext<CbmContext>(configuration)
                         .AddScoped<ICbmContext>(provider => provider.GetRequiredService<CbmContext>())
+                        .AddScoped<DbContext>(provider => provider.GetRequiredService<CbmContext>())
+                        .AddScoped<DbContextBase>(provider => provider.GetRequiredService<CbmContext>())
                         .AddInMemoryCommandDispatcher()
                         .AddInMemoryEventDispatcher()
                         .AddCommandHandlers()
