@@ -1,0 +1,13 @@
+@url = https://localhost:5001/expenses
+
+###
+POST {{url}}
+Content-Type:  application/json
+
+{
+  "name": "My first expense",
+  "description": "This is my very first expense",
+  "amount": 100.23,
+  "currency": "PLN",
+  "expenseTime": "2020-12-20T13:47:04.143Z"
+}

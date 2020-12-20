@@ -1,20 +1,23 @@
-using System;
-using System.Reflection;
+using System.Collections.Generic;
+using iCBM.Infrastructure;
+using iCBM.WebApi.Binders;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Serilog;
-using System.Threading.Tasks;
-using iCBM.Infrastructure;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using iCBM.WebApi.Binders;
 using Misio.Common.CQRS.Commands;
 using Misio.Common.CQRS.Events;
 using Misio.Common.CQRS.Events.Commands;
 using Misio.Common.Logging.CQRS;
 using Misio.EntityFrameworkCore;
 using Misio.EntityFrameworkCore.CQRS;
+using Serilog;
+using System.Threading.Tasks;
+using iCBM.Application;
+using iCBM.WebApi.SchemaFilters;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace iCBM.WebApi
 {
@@ -38,14 +41,23 @@ namespace iCBM.WebApi
                     var configuration = services.BuildServiceProvider().GetService<IConfiguration>();
 
                     services
-                        .AddCommandHandlers()
-                        .AddEventHandlers()
+                        .AddSqlContext<CbmContext>(configuration)
+                        .AddScoped<ICbmContext>(provider => provider.GetRequiredService<CbmContext>())
                         .AddInMemoryCommandDispatcher()
                         .AddInMemoryEventDispatcher()
+                        .AddCommandHandlers()
+                        .AddEventHandlers()
                         .AddEventDispatcherCommandDecorator()
                         .AddTransactionCommandDecorator()
                         .AddCommandHandlerLoggingDecorator()
-                        .AddSqlContext<CbmContext>(configuration);
+                        .AddEFCoreRepository()
+                        .AddSwaggerGen(c =>
+                        {
+                            c.SchemaGeneratorOptions = new SchemaGeneratorOptions()
+                            {
+                            };
+                            c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp1", Version = "v1" });
+                        });
 
                     services.AddControllers(opts =>
                     {
@@ -68,6 +80,13 @@ namespace iCBM.WebApi
                 })
                 .Configure(app =>
                 {
+                    app.UseSwagger();
+                    app.UseSwaggerUI(c =>
+                    {
+                        c.RoutePrefix = string.Empty;
+                        c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApp1 v1");
+                    });
+                    
                     app.UseHttpsRedirection();
                     app.UseRouting();
                     app.UseAuthorization();
