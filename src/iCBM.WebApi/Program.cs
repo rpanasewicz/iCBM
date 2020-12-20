@@ -1,26 +1,87 @@
+using System;
+using System.Reflection;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Serilog;
 using System.Threading.Tasks;
+using iCBM.Infrastructure;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using iCBM.WebApi.Binders;
+using Misio.Common.CQRS.Commands;
+using Misio.Common.CQRS.Events;
+using Misio.Common.CQRS.Events.Commands;
+using Misio.Common.Logging.CQRS;
+using Misio.EntityFrameworkCore;
+using Misio.EntityFrameworkCore.CQRS;
 
 namespace iCBM.WebApi
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+            await WebHost
+                .CreateDefaultBuilder(args)
+                .UseSerilog((context, loggerConfiguration) =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    loggerConfiguration.ReadFrom.Configuration(context.Configuration);
+
+                    loggerConfiguration.Enrich.FromLogContext()
+                        .Enrich.WithProperty("Environment", "Development")
+                        .Enrich.WithProperty("Application", "iCBM")
+                        .Enrich.WithProperty("Version", "0.0");
+                })
+                .ConfigureServices(services =>
+                {
+                    var configuration = services.BuildServiceProvider().GetService<IConfiguration>();
+
+                    services
+                        .AddCommandHandlers()
+                        .AddEventHandlers()
+                        .AddInMemoryCommandDispatcher()
+                        .AddInMemoryEventDispatcher()
+                        .AddEventDispatcherCommandDecorator()
+                        .AddTransactionCommandDecorator()
+                        .AddCommandHandlerLoggingDecorator()
+                        .AddSqlContext<CbmContext>(configuration);
+
+                    services.AddControllers(opts =>
+                    {
+                        opts.ModelBinderProviders.InsertBodyAndRouteBinding();
+                    });
+
+                    services.AddCors(options =>
+                    {
+                        options.AddPolicy(name: "allow-all",
+                            builder =>
+                            {
+                                builder
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod()
+                                    .AllowAnyOrigin();
+                            });
+                    });
+
+                    services.AddMvc();
+                })
+                .Configure(app =>
+                {
+                    app.UseHttpsRedirection();
+                    app.UseRouting();
+                    app.UseAuthorization();
+                    app.UseCors("allow-all");
+                    app.UseEndpoints(endpoints =>
+                    {
+                        endpoints.MapControllers();
+                    });
+
+                })
+                .Build()
+                .MigrateDbContext<CbmContext>(null)
+                .RunAsync();
+        }
     }
 }
+

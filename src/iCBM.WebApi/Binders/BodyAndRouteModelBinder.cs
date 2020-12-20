@@ -1,0 +1,52 @@
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace iCBM.WebApi.Binders
+{
+    public class BodyAndRouteModelBinder : IModelBinder
+    {
+        private readonly IModelBinder _bodyBinder;
+        private readonly IModelBinder _complexBinder;
+
+        public BodyAndRouteModelBinder(IModelBinder bodyBinder, IModelBinder complexBinder)
+        {
+            _bodyBinder = bodyBinder ?? throw new ArgumentNullException(nameof(bodyBinder));
+            _complexBinder = complexBinder ?? throw new ArgumentNullException(nameof(complexBinder));
+        }
+
+        public async Task BindModelAsync(ModelBindingContext bindingContext)
+        {
+            await _bodyBinder.BindModelAsync(bindingContext);
+
+            if (bindingContext.Result.IsModelSet)
+            {
+                bindingContext.Model = bindingContext.Result.Model;
+            }
+
+            await _complexBinder.BindModelAsync(bindingContext);
+
+            var modelType = bindingContext.ModelMetadata.UnderlyingOrModelType;
+            var modelInstance = bindingContext.Result.Model;
+
+            foreach (var routParam in bindingContext.ActionContext.RouteData.Values)
+            {
+                var paramValue = routParam.Value as string;
+
+                if (Guid.TryParse(paramValue, out var paramGuidValue))
+                {
+                    var idProperty = modelType.GetProperties()
+                        .FirstOrDefault(p => p.Name.Equals(routParam.Key, StringComparison.InvariantCultureIgnoreCase));
+
+                    if (idProperty != null)
+                    {
+                        idProperty.ForceSetValue(modelInstance, paramGuidValue);
+                    }
+                }
+            }
+
+            bindingContext.Result = ModelBindingResult.Success(modelInstance);
+        }
+    }
+}
