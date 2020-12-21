@@ -4,7 +4,7 @@ using iCBM.Domain.Models;
 using iCBM.Domain.ValueObjects;
 using Misio.Common.CQRS.Commands.Abstractions;
 
-namespace iCBM.Application.Commands
+namespace iCBM.Application.Commands.Suppliers
 {
     public class AddSupplierCommand : ICommand<Guid>
     {

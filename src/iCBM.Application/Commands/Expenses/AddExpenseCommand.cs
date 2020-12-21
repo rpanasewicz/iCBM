@@ -1,13 +1,13 @@
-﻿using Misio.Common.CQRS.Commands.Abstractions;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using iCBM.Domain.Enums;
 using iCBM.Domain.Models;
 using iCBM.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
+using Misio.Common.CQRS.Commands.Abstractions;
 using Misio.Domain.Types;
 
-namespace iCBM.Application.Commands
+namespace iCBM.Application.Commands.Expenses
 {
     public class AddExpenseCommand : ICommand<Guid>
     {

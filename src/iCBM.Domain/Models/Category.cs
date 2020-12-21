@@ -40,5 +40,12 @@ namespace iCBM.Domain.Models
         {
             return new Category(name, color, icon, Enumerable.Empty<Expense>());
         }
+
+        public void Update(string name, Color color, string icon)
+        {
+            Name = name;
+            Color = color;
+            Icon = icon;
+        }
     }
 }

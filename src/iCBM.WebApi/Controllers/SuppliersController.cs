@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using iCBM.Application.Commands;
+using iCBM.Application.Commands.Suppliers;
 using Microsoft.AspNetCore.Mvc;
 using Misio.Common.CQRS.Commands.Abstractions;
 
