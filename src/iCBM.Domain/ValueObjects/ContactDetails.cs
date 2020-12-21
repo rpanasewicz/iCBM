@@ -1,4 +1,4 @@
-﻿namespace iCBM.Domain.Models
+﻿namespace iCBM.Domain.ValueObjects
 {
     public class ContactDetails
     {

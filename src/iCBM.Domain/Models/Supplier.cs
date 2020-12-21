@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using iCBM.Domain.ValueObjects;
 using Misio.Domain.CQRS;
 
 namespace iCBM.Domain.Models

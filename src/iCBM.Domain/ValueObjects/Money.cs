@@ -1,6 +1,7 @@
-﻿using Misio.Domain.Types;
+﻿using iCBM.Domain.Enums;
+using Misio.Domain.Types;
 
-namespace iCBM.Domain.Models
+namespace iCBM.Domain.ValueObjects
 {
     public class Money
     {

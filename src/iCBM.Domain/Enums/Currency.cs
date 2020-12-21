@@ -1,6 +1,6 @@
 ﻿using Misio.Domain.Types;
 
-namespace iCBM.Domain.Models
+namespace iCBM.Domain.Enums
 {
     public class Currency : Enumeration
     {

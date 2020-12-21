@@ -1,4 +1,5 @@
 ﻿using iCBM.Application;
+using iCBM.Domain.Enums;
 using iCBM.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -9,8 +10,11 @@ namespace iCBM.Infrastructure
     public class CbmContext : DbContextBase, ICbmContext
     {
         public DbSet<Expense> Expenses { get; set; }
-        public DbSet<Currency> Currencies { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Color> Colors { get; set; }
 
         public CbmContext(DbContextOptions<CbmContext> options) : base(options)
         {

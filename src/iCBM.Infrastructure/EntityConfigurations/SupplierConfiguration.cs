@@ -6,11 +6,8 @@ using Misio.EntityFrameworkCore;
 
 namespace iCBM.Infrastructure.EntityConfigurations
 {
-    public class SupplierConfiguration : BaseEntityConfiguration<Supplier>
+    public class SupplierConfiguration : EntityConfigurationBase<Supplier>
     {
-        public override string TableName => "Supplier";
-        public override string PrimaryKeyColumnName => "Id";
-
         public override void ConfigureFields(EntityTypeBuilder<Supplier> entity)
         {
             entity.OwnsOne(s => s.ContactDetails, builder =>
@@ -45,7 +42,5 @@ namespace iCBM.Infrastructure.EntityConfigurations
         public override void ConfigureRelationships(EntityTypeBuilder<Supplier> entity)
         {
         }
-
-        public override IEnumerable<Supplier> SeedData => new List<Supplier>();
     }
 }

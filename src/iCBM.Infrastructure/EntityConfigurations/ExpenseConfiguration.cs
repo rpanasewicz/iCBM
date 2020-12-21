@@ -6,11 +6,8 @@ using System.Collections.Generic;
 
 namespace iCBM.Infrastructure.EntityConfigurations
 {
-    public class ExpenseConfiguration : BaseEntityConfiguration<Expense>
+    public class ExpenseConfiguration : EntityConfigurationBase<Expense>
     {
-        public override string TableName => "Expenses";
-        public override string PrimaryKeyColumnName => "Id";
-
         public override void ConfigureFields(EntityTypeBuilder<Expense> entity)
         {
             entity.OwnsOne(e => e.Amount)
@@ -31,8 +28,10 @@ namespace iCBM.Infrastructure.EntityConfigurations
             entity.HasOne(e => e.Supplier)
                 .WithMany(e => e.Expenses)
                 .HasForeignKey(e => e.SupplierId);
-        }
 
-        public override IEnumerable<Expense> SeedData => new List<Expense>();
+            entity.HasOne(e => e.Category)
+                .WithMany(e => e.Expenses)
+                .HasForeignKey(e => e.CategoryId);
+        }
     }
 }
