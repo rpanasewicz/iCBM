@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using iCBM.Application.Commands;
-using iCBM.Application.Commands.Suppliers;
+﻿using iCBM.Application.Commands.Suppliers;
 using Microsoft.AspNetCore.Mvc;
 using Misio.Common.CQRS.Commands.Abstractions;
+using System.Threading.Tasks;
 
 namespace iCBM.WebApi.Controllers
 {

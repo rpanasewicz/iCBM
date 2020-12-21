@@ -1,29 +1,44 @@
-using System.Collections.Generic;
+using iCBM.Application;
 using iCBM.Infrastructure;
 using iCBM.WebApi.Binders;
+using iCBM.WebApi.SchemaFilters;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Misio.Common.CQRS.Commands;
+using Misio.Common.CQRS.Commands.Abstractions;
 using Misio.Common.CQRS.Events;
 using Misio.Common.CQRS.Events.Commands;
 using Misio.Common.Logging.CQRS;
+using Misio.Common.Types;
 using Misio.EntityFrameworkCore;
 using Misio.EntityFrameworkCore.CQRS;
 using Serilog;
-using System.Threading.Tasks;
-using iCBM.Application;
-using iCBM.WebApi.SchemaFilters;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace iCBM.WebApi
 {
     public class Program
     {
+        public static IServiceCollection AddCommandHandlers(IServiceCollection services)
+        {
+            services.Scan(s =>
+                s.FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
+                    .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<,>))
+                        .WithoutAttribute(typeof(DecoratorAttribute)))
+                    .AsImplementedInterfaces()
+                    .WithTransientLifetime());
+
+            return services;
+        }
+
         public static async Task Main(string[] args)
         {
             await WebHost
@@ -41,6 +56,8 @@ namespace iCBM.WebApi
                 {
                     var configuration = services.BuildServiceProvider().GetService<IConfiguration>();
 
+                    AddCommandHandlers((services));
+
                     services
                         .AddSqlContext<CbmContext>(configuration)
                         .AddScoped<ICbmContext>(provider => provider.GetRequiredService<CbmContext>())
@@ -48,7 +65,6 @@ namespace iCBM.WebApi
                         .AddScoped<DbContextBase>(provider => provider.GetRequiredService<CbmContext>())
                         .AddInMemoryCommandDispatcher()
                         .AddInMemoryEventDispatcher()
-                        .AddCommandHandlers()
                         .AddEventHandlers()
                         .AddEventDispatcherCommandDecorator()
                         .AddTransactionCommandDecorator()
@@ -102,7 +118,7 @@ namespace iCBM.WebApi
 
                 })
                 .Build()
-                .MigrateDbContext<CbmContext>(null)
+                .MigrateDbContext<CbmContext>(null, true)
                 .RunAsync();
         }
     }

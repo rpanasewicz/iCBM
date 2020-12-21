@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using iCBM.Domain.ValueObjects;
+using Misio.Domain.CQRS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using iCBM.Domain.ValueObjects;
-using Misio.Domain.CQRS;
 
 namespace iCBM.Domain.Models
 {
@@ -11,7 +10,7 @@ namespace iCBM.Domain.Models
     {
         public string Name { get; private set; }
         public string Description { get; private set; }
-        
+
         public ContactDetails ContactDetails { get; }
 
         private ISet<Expense> _expenses;

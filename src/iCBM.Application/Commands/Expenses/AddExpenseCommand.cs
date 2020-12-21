@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using iCBM.Domain.Enums;
+﻿using iCBM.Domain.Enums;
 using iCBM.Domain.Models;
 using iCBM.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Misio.Common.CQRS.Commands.Abstractions;
 using Misio.Domain.Types;
+using System;
+using System.Threading.Tasks;
 
 namespace iCBM.Application.Commands.Expenses
 {
@@ -19,7 +19,7 @@ namespace iCBM.Application.Commands.Expenses
         public string CategoryName { get; }
         public Guid? CategoryId { get; }
         public Guid? SupplierId { get; }
-        
+
         public AddExpenseCommand(string name, string description, decimal amount, string currency, DateTime expenseTime, Guid? supplierId, Guid? categoryId, string categoryName)
         {
             Name = name;
@@ -32,7 +32,7 @@ namespace iCBM.Application.Commands.Expenses
             CategoryName = categoryName;
         }
     }
-    
+
     public class AddExpenseCommandHandler : ICommandHandler<AddExpenseCommand, Guid>
     {
         private readonly ICbmContext _ctx;
@@ -49,22 +49,22 @@ namespace iCBM.Application.Commands.Expenses
             if (cmd.SupplierId is not null)
             {
                 supplier = await _ctx.Suppliers.FindAsync(cmd.SupplierId);
-                supplier = supplier ?? throw new Exception();
+                supplier = supplier ?? throw new Exception("Supplier not found");
             }
 
             var category = cmd.CategoryId switch
             {
-                null => await _ctx.Categories.FindAsync(cmd.CategoryId),
+                not null => await _ctx.Categories.FindAsync(cmd.CategoryId),
                 _ => await _ctx.Categories.SingleOrDefaultAsync(c => c.Name.Equals(cmd.CategoryName))
             };
 
             if (category is null)
             {
-                throw new Exception();
+                throw new Exception("Category not found");
             }
-            
+
             var expense = Expense.New(cmd.Name, cmd.Description,
-                new Money(cmd.Amount, Enumeration.FromDisplayName<Currency>(cmd.Currency)), 
+                new Money(cmd.Amount, Enumeration.FromDisplayName<Currency>(cmd.Currency)),
                 cmd.ExpenseTime, supplier, category);
 
             await _ctx.Expenses.AddAsync(expense);

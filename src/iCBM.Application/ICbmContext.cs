@@ -9,7 +9,7 @@ namespace iCBM.Application
         DbSet<Expense> Expenses { get; set; }
         DbSet<Supplier> Suppliers { get; set; }
         DbSet<Category> Categories { get; set; }
-        
+
         DbSet<Currency> Currencies { get; set; }
         DbSet<Color> Colors { get; set; }
     }

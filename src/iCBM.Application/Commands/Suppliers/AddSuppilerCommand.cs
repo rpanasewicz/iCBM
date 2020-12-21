@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using iCBM.Domain.Models;
+﻿using iCBM.Domain.Models;
 using iCBM.Domain.ValueObjects;
 using Misio.Common.CQRS.Commands.Abstractions;
+using System;
+using System.Threading.Tasks;
 
 namespace iCBM.Application.Commands.Suppliers
 {

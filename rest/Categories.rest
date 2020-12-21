@@ -1,0 +1,22 @@
+@url = https://localhost:5001/categories
+@categoryId = 00000000-0000-0000-0000-000000000000
+
+###
+POST {{url}}
+Content-Type:  application/json
+
+{
+  "name": "Other",
+  "color": "red",
+  "icon": "shopping-cart"
+}
+
+###
+PUT {{url}}/{{categoryId}}
+Content-Type:  application/json
+
+{
+  "name": "Materials",
+  "color": "red",
+  "icon": "store"
+}

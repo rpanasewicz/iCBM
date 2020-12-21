@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Misio.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace iCBM.Infrastructure.EntityConfigurations
 {

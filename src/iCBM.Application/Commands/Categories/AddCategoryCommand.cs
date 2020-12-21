@@ -1,10 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using iCBM.Domain.Enums;
+﻿using iCBM.Domain.Enums;
 using iCBM.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Misio.Common.CQRS.Commands.Abstractions;
 using Misio.Domain.Types;
+using System;
+using System.Threading.Tasks;
 
 namespace iCBM.Application.Commands.Categories
 {

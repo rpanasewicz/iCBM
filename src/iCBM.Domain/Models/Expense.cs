@@ -1,6 +1,6 @@
-﻿using Misio.Domain.CQRS;
+﻿using iCBM.Domain.ValueObjects;
+using Misio.Domain.CQRS;
 using System;
-using iCBM.Domain.ValueObjects;
 
 namespace iCBM.Domain.Models
 {
@@ -12,7 +12,7 @@ namespace iCBM.Domain.Models
         public DateTime ExpenseTime { get; private set; }
         public Guid? SupplierId { get; private set; }
         public Guid CategoryId { get; private set; }
-        
+
         public Supplier Supplier { get; private set; }
         public Category Category { get; private set; }
 
@@ -24,7 +24,7 @@ namespace iCBM.Domain.Models
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(name));
             if (string.IsNullOrWhiteSpace(description))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(description));
-            
+
             Id = id;
             Name = name;
             Description = description;

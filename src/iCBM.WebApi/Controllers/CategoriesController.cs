@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using iCBM.Application.Commands.Categories;
+﻿using iCBM.Application.Commands.Categories;
 using Microsoft.AspNetCore.Mvc;
 using Misio.Common.CQRS.Commands.Abstractions;
+using System.Threading.Tasks;
 
 namespace iCBM.WebApi.Controllers
 {
@@ -24,10 +24,10 @@ namespace iCBM.WebApi.Controllers
         }
 
         [HttpPut("{categoryId:guid}")]
-        public async Task<IActionResult> UpdateCategory(AddCategoryCommand cmd)
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryCommand cmd)
         {
             var result = await _commandDispatcher.SendAsync(cmd);
-            return Created($"/expenses/{result:N}", result);
+            return Ok();
         }
     }
 }

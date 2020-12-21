@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using iCBM.Domain.Models;
+﻿using iCBM.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Misio.EntityFrameworkCore;
