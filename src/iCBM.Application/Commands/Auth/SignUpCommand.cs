@@ -1,10 +1,10 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using iCBM.Domain.Models;
+﻿using iCBM.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Misio.Common.Auth.Abstractions;
 using Misio.Common.CQRS.Commands.Abstractions;
+using System;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace iCBM.Application.Commands.Auth
 {

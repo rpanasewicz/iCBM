@@ -33,7 +33,7 @@ namespace iCBM.Domain.Models
         {
             Id = id;
             Name = name;
-            Color = color;
+            Color = color; 
             Icon = icon;
             Expenses = expenses;
         }

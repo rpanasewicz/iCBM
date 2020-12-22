@@ -1,6 +1,6 @@
-﻿using System;
-using iCBM.Domain.Models;
+﻿using iCBM.Domain.Models;
 using Misio.Common.CQRS.Queries.AutoMapper.Abstractions;
+using System;
 
 namespace iCBM.Application.Dtos
 {

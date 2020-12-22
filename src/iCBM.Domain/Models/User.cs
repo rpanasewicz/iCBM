@@ -1,5 +1,5 @@
-﻿using System;
-using Misio.Domain.CQRS;
+﻿using Misio.Domain.CQRS;
+using System;
 
 namespace iCBM.Domain.Models
 {

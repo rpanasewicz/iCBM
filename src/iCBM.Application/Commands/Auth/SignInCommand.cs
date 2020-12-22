@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Misio.Common.Auth.Abstractions;
 using Misio.Common.Auth.Types;
 using Misio.Common.CQRS.Commands.Abstractions;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace iCBM.Application.Commands.Auth
 {
@@ -32,7 +32,7 @@ namespace iCBM.Application.Commands.Auth
             @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
             RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-        public SignInCommandHandler( IPasswordService passwordService, IJwtHandler jwtHandler, ICbmContext context)
+        public SignInCommandHandler(IPasswordService passwordService, IJwtHandler jwtHandler, ICbmContext context)
         {
             _passwordService = passwordService;
             _jwtHandler = jwtHandler;
@@ -55,8 +55,8 @@ namespace iCBM.Application.Commands.Auth
 
             var claims = new Dictionary<string, IEnumerable<string>>
             {
-                ["firstName"] = new string[] { user.FirstName },
-                ["lastName"] = new string[] { user.LastName },
+                ["firstName"] = new[] { user.FirstName },
+                ["lastName"] = new[] { user.LastName },
             };
 
             return _jwtHandler.CreateToken(user.Id.ToString(), "role", claims);

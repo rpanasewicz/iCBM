@@ -1,14 +1,14 @@
-﻿using System;
-using iCBM.Domain.Models;
+﻿using iCBM.Domain.Models;
 using Misio.Common.CQRS.Queries.AutoMapper.Abstractions;
+using System;
 
 namespace iCBM.Application.Dtos
 {
     public class SupplierDto : IMapFrom<Supplier>
     {
         public Guid Id { get; }
-        public string Name { get;  }
-        public string Description { get;  }
+        public string Name { get; }
+        public string Description { get; }
 
         public ContactDetailsDto ContactDetails { get; }
 

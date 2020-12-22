@@ -1,10 +1,10 @@
 ﻿using iCBM.Application.Commands.Categories;
 using iCBM.Application.Queries.Categories;
 using Microsoft.AspNetCore.Mvc;
+using Misio.Common.Auth.Attributes;
 using Misio.Common.CQRS.Commands.Abstractions;
 using Misio.Common.CQRS.Queries.Abstractions;
 using System.Threading.Tasks;
-using Misio.Common.Auth.Attributes;
 
 namespace iCBM.WebApi.Controllers
 {
@@ -39,7 +39,7 @@ namespace iCBM.WebApi.Controllers
         [HttpPut("{categoryId:guid}")]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryCommand cmd)
         {
-            var result = await _commandDispatcher.SendAsync(cmd);
+            await _commandDispatcher.SendAsync(cmd);
             return Ok();
         }
     }

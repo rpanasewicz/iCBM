@@ -1,10 +1,10 @@
 ﻿using iCBM.Application.Commands.Suppliers;
-using Microsoft.AspNetCore.Mvc;
-using Misio.Common.CQRS.Commands.Abstractions;
-using System.Threading.Tasks;
 using iCBM.Application.Queries.Suppliers;
+using Microsoft.AspNetCore.Mvc;
 using Misio.Common.Auth.Attributes;
+using Misio.Common.CQRS.Commands.Abstractions;
 using Misio.Common.CQRS.Queries.Abstractions;
+using System.Threading.Tasks;
 
 namespace iCBM.WebApi.Controllers
 {
@@ -23,7 +23,7 @@ namespace iCBM.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSuppliers() 
+        public async Task<IActionResult> GetSuppliers()
             => Ok(await _queryDispatcher.QueryAsync(new GetAllSuppliersQuery()));
 
         [HttpPost]

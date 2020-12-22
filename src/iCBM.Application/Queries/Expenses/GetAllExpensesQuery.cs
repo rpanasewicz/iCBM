@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using iCBM.Application.Dtos;
 using Misio.Common.CQRS.Queries.Abstractions;
 using Misio.Common.CQRS.Queries.AutoMapper;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace iCBM.Application.Queries.Expenses
 {

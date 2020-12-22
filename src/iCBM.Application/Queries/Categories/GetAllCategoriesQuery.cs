@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using iCBM.Application.Dtos;
 using Misio.Common.CQRS.Queries.Abstractions;
+using Misio.Common.CQRS.Queries.AutoMapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using iCBM.Application.Dtos;
-using Misio.Common.CQRS.Queries.AutoMapper;
 
 namespace iCBM.Application.Queries.Categories
 {
