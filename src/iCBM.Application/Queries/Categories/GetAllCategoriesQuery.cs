@@ -1,11 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using Misio.Common.CQRS.Queries.Abstractions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
-using iCBM.Domain.Enums;
-using iCBM.Domain.Models;
-using Misio.Common.CQRS.Queries;
-using Misio.Common.CQRS.Queries.Abstractions;
+using iCBM.Application.Queries.Dtos;
+using Misio.Common.CQRS.Queries.AutoMapper;
 
 namespace iCBM.Application.Queries.Categories
 {
@@ -26,22 +24,5 @@ namespace iCBM.Application.Queries.Categories
 
         public Task<List<CategoryDto>> Handle(GetAllCategoriesQuery query)
             => _ctx.Categories.ProjectToListAsync<CategoryDto>(_mapper.ConfigurationProvider);
-    }
-
-
-    public class CategoryDto : IMapFrom<Category>
-    {
-        public string Name { get; }
-        public Color Color { get; }
-        public string Icon { get; }
-
-        private CategoryDto() { }
-        
-        public CategoryDto(string name, Color color, string icon)
-        {
-            Name = name;
-            Color = color;
-            Icon = icon;
-        }
     }
 }

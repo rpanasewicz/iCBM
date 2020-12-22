@@ -10,21 +10,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Misio.Common.CQRS.Commands;
-using Misio.Common.CQRS.Commands.Abstractions;
 using Misio.Common.CQRS.Events;
 using Misio.Common.CQRS.Events.Commands;
+using Misio.Common.CQRS.Queries;
 using Misio.Common.Logging.CQRS;
-using Misio.Common.Types;
 using Misio.EntityFrameworkCore;
 using Misio.EntityFrameworkCore.CQRS;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading.Tasks;
-using AutoMapper;
-using Misio.Common.CQRS.Queries;
+using Misio.Common.CQRS.Queries.AutoMapper;
 
 namespace iCBM.WebApi
 {

@@ -1,9 +1,9 @@
 ﻿using iCBM.Application.Commands.Categories;
+using iCBM.Application.Queries.Categories;
 using Microsoft.AspNetCore.Mvc;
 using Misio.Common.CQRS.Commands.Abstractions;
-using System.Threading.Tasks;
-using iCBM.Application.Queries.Categories;
 using Misio.Common.CQRS.Queries.Abstractions;
+using System.Threading.Tasks;
 
 namespace iCBM.WebApi.Controllers
 {
@@ -26,7 +26,7 @@ namespace iCBM.WebApi.Controllers
             var result = await _queryDispatcher.QueryAsync(new GetAllCategoriesQuery());
             return Ok(result);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> AddCategory(AddCategoryCommand cmd)
         {

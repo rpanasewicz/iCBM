@@ -1,19 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Misio.Common" Version="0.1.65" />
-    <PackageReference Include="Misio.Common.CQRS.Commands" Version="0.1.65" />
-    <PackageReference Include="Misio.Common.CQRS.Queries" Version="0.1.65" />
-    <PackageReference Include="Misio.Common.CQRS.Events.Commands" Version="0.1.65" />
-    <PackageReference Include="Misio.Common.CQRS.Events" Version="0.1.65" />
-    <PackageReference Include="Misio.Common.Logging.CQRS" Version="0.1.65" />
-    <PackageReference Include="Misio.Domain" Version="0.1.65" />
-    <PackageReference Include="Misio.Domain.CQRS" Version="0.1.65" />
-    <PackageReference Include="Misio.EntityFrameworkCore" Version="0.1.65" />
-    <PackageReference Include="Misio.EntityFrameworkCore.CQRS" Version="0.1.65" />
+    <PackageReference Include="Misio.Common" Version="0.1.66" />
+    <PackageReference Include="Misio.Common.CQRS.Commands" Version="0.1.66" />
+    <PackageReference Include="Misio.Common.CQRS.Queries" Version="0.1.66" />
+    <PackageReference Include="Misio.Common.CQRS.Queries.AutoMapper" Version="0.1.66" />
+    <PackageReference Include="Misio.Common.CQRS.Events.Commands" Version="0.1.66" />
+    <PackageReference Include="Misio.Common.CQRS.Events" Version="0.1.66" />
+    <PackageReference Include="Misio.Common.Logging.CQRS" Version="0.1.66" />
+    <PackageReference Include="Misio.Domain" Version="0.1.66" />
+    <PackageReference Include="Misio.Domain.CQRS" Version="0.1.66" />
+    <PackageReference Include="Misio.EntityFrameworkCore" Version="0.1.66" />
+    <PackageReference Include="Misio.EntityFrameworkCore.CQRS" Version="0.1.66" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\iCBM.Domain\iCBM.Domain.csproj" />
