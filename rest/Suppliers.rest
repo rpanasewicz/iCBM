@@ -1,4 +1,8 @@
-@url = https://localhost:5001/suppilers
+@url = https://localhost:5001/suppliers
+
+###
+GET {{url}}
+Content-Type:  application/json
 
 ###
 POST {{url}}
@@ -6,7 +10,7 @@ Content-Type:  application/json
 
 {
   "name": "Castodelma",
-  "description": "Castolelma DIY store.",
+  "description": "Castodelma DIY store.",
   "addressLine1": "Szkolna 14",
   "addressLine2": null,
   "zipcode": "15-000",

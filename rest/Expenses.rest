@@ -1,6 +1,10 @@
 @url = https://localhost:5001/expenses
 
 ###
+GET {{url}}
+Content-Type:  application/json
+
+###
 POST {{url}}
 Content-Type:  application/json
 
@@ -12,5 +16,5 @@ Content-Type:  application/json
   "expenseTime": "2020-12-20T13:47:04.143Z",
   "categoryName": "Other",
   "categoryId": null,
-  "suppilerId": "3c0d29b8-535e-48d4-8f82-7565b2443c8c"
+  "supplierId": "3c0d29b8-535e-48d4-8f82-7565b2443c8c"
 }

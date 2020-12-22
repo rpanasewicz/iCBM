@@ -1,7 +1,7 @@
 ﻿using iCBM.Domain.Enums;
 using Misio.Common.CQRS.Queries.AutoMapper.Abstractions;
 
-namespace iCBM.Application.Queries.Dtos
+namespace iCBM.Application.Dtos
 {
     public class ColorDto : IMapFrom<Color>
     {

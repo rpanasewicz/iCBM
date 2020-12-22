@@ -2,7 +2,7 @@
 using iCBM.Domain.Models;
 using Misio.Common.CQRS.Queries.AutoMapper.Abstractions;
 
-namespace iCBM.Application.Queries.Dtos
+namespace iCBM.Application.Dtos
 {
     public class CategoryDto : IMapFrom<Category>
     {
