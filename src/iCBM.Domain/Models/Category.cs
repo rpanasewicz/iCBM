@@ -1,5 +1,5 @@
-﻿using iCBM.Domain.Enums;
-using Misio.Domain.CQRS;
+﻿using iCBM.Domain.Common;
+using iCBM.Domain.Enums;
 using Misio.Domain.Types;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace iCBM.Domain.Models
 {
-    public class Category : EntityEventPublisher
+    public class Category : OwnedEntity
     {
         public string Name { get; private set; }
         public int ColorId { get; private set; }
@@ -33,7 +33,7 @@ namespace iCBM.Domain.Models
         {
             Id = id;
             Name = name;
-            Color = color; 
+            Color = color;
             Icon = icon;
             Expenses = expenses;
         }

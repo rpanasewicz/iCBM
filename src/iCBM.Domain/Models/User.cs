@@ -1,9 +1,10 @@
-﻿using Misio.Domain.CQRS;
-using System;
+﻿using System;
+using iCBM.Domain.Common;
+using Misio.Domain.Types;
 
 namespace iCBM.Domain.Models
 {
-    public class User : EntityEventPublisher
+    public class User : EntityBase
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }

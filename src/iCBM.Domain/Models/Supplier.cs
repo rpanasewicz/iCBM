@@ -1,12 +1,12 @@
-﻿using iCBM.Domain.ValueObjects;
-using Misio.Domain.CQRS;
+﻿using iCBM.Domain.Common;
+using iCBM.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace iCBM.Domain.Models
 {
-    public class Supplier : EntityEventPublisher
+    public class Supplier : OwnedEntity
     {
         public string Name { get; private set; }
         public string Description { get; private set; }

@@ -40,6 +40,14 @@ namespace iCBM.Infrastructure.EntityConfigurations
 
         public override void ConfigureRelationships(EntityTypeBuilder<Supplier> entity)
         {
+            entity.HasOne(e => e.Owner)
+                .WithMany()
+                .HasForeignKey(e => e.OwnerId)
+                .OnDelete(DeleteBehavior.NoAction);
+        }
+
+        public SupplierConfiguration(DbContextBase context) : base(context)
+        {
         }
     }
 }

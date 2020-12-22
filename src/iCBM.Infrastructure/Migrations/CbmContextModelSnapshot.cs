@@ -1061,12 +1061,11 @@ namespace iCBM.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("CreatedOn");
 
-                    b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ExpirationDate");
-
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -1081,7 +1080,12 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Categories");
 
@@ -1093,9 +1097,11 @@ namespace iCBM.Infrastructure.Migrations
                             CreatedBy = "System",
                             CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Icon = "shop",
+                            IsDeleted = false,
                             ModifiedBy = "System",
                             ModifiedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Materials"
+                            Name = "Materials",
+                            OwnerId = new Guid("af76108b-11ee-448b-907f-0dcaccc8adf6")
                         },
                         new
                         {
@@ -1104,9 +1110,11 @@ namespace iCBM.Infrastructure.Migrations
                             CreatedBy = "System",
                             CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Icon = "shop",
+                            IsDeleted = false,
                             ModifiedBy = "System",
                             ModifiedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Services"
+                            Name = "Services",
+                            OwnerId = new Guid("af76108b-11ee-448b-907f-0dcaccc8adf6")
                         },
                         new
                         {
@@ -1115,9 +1123,11 @@ namespace iCBM.Infrastructure.Migrations
                             CreatedBy = "System",
                             CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Icon = "shop",
+                            IsDeleted = false,
                             ModifiedBy = "System",
                             ModifiedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Other"
+                            Name = "Other",
+                            OwnerId = new Guid("af76108b-11ee-448b-907f-0dcaccc8adf6")
                         });
                 });
 
@@ -1145,9 +1155,8 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<DateTime>("ExpenseTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ExpirationDate");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -1162,12 +1171,17 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("SupplierId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("OwnerId");
 
                     b.HasIndex("SupplierId");
 
@@ -1192,9 +1206,8 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ExpirationDate");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -1209,7 +1222,12 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Suppliers");
                 });
@@ -1232,12 +1250,11 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ExpirationDate");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -1258,6 +1275,32 @@ namespace iCBM.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("af76108b-11ee-448b-907f-0dcaccc8adf6"),
+                            CreatedBy = "System",
+                            CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "harry@example.com",
+                            FirstName = "Harry",
+                            IsDeleted = false,
+                            LastName = "Potter",
+                            ModifiedBy = "System",
+                            ModifiedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Password = "AQAAAAEAACcQAAAAEAgypWPs8S/vBidt0j/vANTzN25W/BkUbO/MhGadoWBpCcEhFvnJ5VUV+lPLHBQq/Q=="
+                        });
+                });
+
+            modelBuilder.Entity("iCBM.Domain.Models.Category", b =>
+                {
+                    b.HasOne("iCBM.Domain.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("iCBM.Domain.Models.Expense", b =>
@@ -1266,6 +1309,12 @@ namespace iCBM.Infrastructure.Migrations
                         .WithMany("Expenses")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("iCBM.Domain.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("iCBM.Domain.Models.Supplier", "Supplier")
@@ -1298,11 +1347,19 @@ namespace iCBM.Infrastructure.Migrations
 
                     b.Navigation("Category");
 
+                    b.Navigation("Owner");
+
                     b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("iCBM.Domain.Models.Supplier", b =>
                 {
+                    b.HasOne("iCBM.Domain.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.OwnsOne("iCBM.Domain.ValueObjects.ContactDetails", "ContactDetails", b1 =>
                         {
                             b1.Property<Guid>("SupplierId")
@@ -1347,6 +1404,8 @@ namespace iCBM.Infrastructure.Migrations
                         });
 
                     b.Navigation("ContactDetails");
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("iCBM.Domain.Models.Category", b =>

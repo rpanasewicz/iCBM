@@ -10,8 +10,8 @@ using iCBM.Infrastructure;
 namespace iCBM.Infrastructure.Migrations
 {
     [DbContext(typeof(CbmContext))]
-    [Migration("20201221180719_AddCategory")]
-    partial class AddCategory
+    [Migration("20201222203642_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1063,12 +1063,11 @@ namespace iCBM.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("CreatedOn");
 
-                    b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ExpirationDate");
-
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -1083,11 +1082,55 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ColorId");
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("fe9fac56-7230-4c16-81c0-be9b61fdc861"),
+                            ColorId = 6,
+                            CreatedBy = "System",
+                            CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Icon = "shop",
+                            IsDeleted = false,
+                            ModifiedBy = "System",
+                            ModifiedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Materials",
+                            OwnerId = new Guid("af76108b-11ee-448b-907f-0dcaccc8adf6")
+                        },
+                        new
+                        {
+                            Id = new Guid("fd547340-199e-49be-88ed-3d7570ddaf4b"),
+                            ColorId = 1,
+                            CreatedBy = "System",
+                            CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Icon = "shop",
+                            IsDeleted = false,
+                            ModifiedBy = "System",
+                            ModifiedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Services",
+                            OwnerId = new Guid("af76108b-11ee-448b-907f-0dcaccc8adf6")
+                        },
+                        new
+                        {
+                            Id = new Guid("1c7fdef1-1db4-45be-9058-eeb22d80ed01"),
+                            ColorId = 13,
+                            CreatedBy = "System",
+                            CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Icon = "shop",
+                            IsDeleted = false,
+                            ModifiedBy = "System",
+                            ModifiedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Other",
+                            OwnerId = new Guid("af76108b-11ee-448b-907f-0dcaccc8adf6")
+                        });
                 });
 
             modelBuilder.Entity("iCBM.Domain.Models.Expense", b =>
@@ -1114,9 +1157,8 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<DateTime>("ExpenseTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ExpirationDate");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -1131,12 +1173,17 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("SupplierId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("OwnerId");
 
                     b.HasIndex("SupplierId");
 
@@ -1161,9 +1208,8 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ExpirationDate");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -1178,20 +1224,85 @@ namespace iCBM.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Suppliers");
                 });
 
+            modelBuilder.Entity("iCBM.Domain.Models.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)")
+                        .HasColumnName("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedOn");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)")
+                        .HasColumnName("ModifiedBy");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ModifiedOn");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("af76108b-11ee-448b-907f-0dcaccc8adf6"),
+                            CreatedBy = "System",
+                            CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "harry@example.com",
+                            FirstName = "Harry",
+                            IsDeleted = false,
+                            LastName = "Potter",
+                            ModifiedBy = "System",
+                            ModifiedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Password = "AQAAAAEAACcQAAAAEAgypWPs8S/vBidt0j/vANTzN25W/BkUbO/MhGadoWBpCcEhFvnJ5VUV+lPLHBQq/Q=="
+                        });
+                });
+
             modelBuilder.Entity("iCBM.Domain.Models.Category", b =>
                 {
-                    b.HasOne("iCBM.Domain.Enums.Color", "Color")
+                    b.HasOne("iCBM.Domain.Models.User", "Owner")
                         .WithMany()
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Color");
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("iCBM.Domain.Models.Expense", b =>
@@ -1200,6 +1311,12 @@ namespace iCBM.Infrastructure.Migrations
                         .WithMany("Expenses")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("iCBM.Domain.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("iCBM.Domain.Models.Supplier", "Supplier")
@@ -1232,11 +1349,19 @@ namespace iCBM.Infrastructure.Migrations
 
                     b.Navigation("Category");
 
+                    b.Navigation("Owner");
+
                     b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("iCBM.Domain.Models.Supplier", b =>
                 {
+                    b.HasOne("iCBM.Domain.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.OwnsOne("iCBM.Domain.ValueObjects.ContactDetails", "ContactDetails", b1 =>
                         {
                             b1.Property<Guid>("SupplierId")
@@ -1281,6 +1406,8 @@ namespace iCBM.Infrastructure.Migrations
                         });
 
                     b.Navigation("ContactDetails");
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("iCBM.Domain.Models.Category", b =>

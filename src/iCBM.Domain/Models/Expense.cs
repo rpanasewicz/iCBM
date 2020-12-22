@@ -1,10 +1,10 @@
-﻿using iCBM.Domain.ValueObjects;
-using Misio.Domain.CQRS;
+﻿using iCBM.Domain.Common;
+using iCBM.Domain.ValueObjects;
 using System;
 
 namespace iCBM.Domain.Models
 {
-    public class Expense : EntityEventPublisher
+    public class Expense : OwnedEntity
     {
         public string Name { get; private set; }
         public string Description { get; private set; }
