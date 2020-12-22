@@ -1,4 +1,5 @@
-﻿using iCBM.Application.Commands.Expenses;
+﻿using System;
+using iCBM.Application.Commands.Expenses;
 using iCBM.Application.Queries.Expenses;
 using Microsoft.AspNetCore.Mvc;
 using Misio.Common.Auth.Attributes;
@@ -11,7 +12,7 @@ namespace iCBM.WebApi.Controllers
     [JwtAuth]
     [ApiController]
     [Route("[controller]")]
-    public class ExpensesController : ControllerBase
+    public class ExpensesController : Controller
     {
         private readonly ICommandDispatcher _commandDispatcher;
         private readonly IQueryDispatcher _queryDispatcher;
@@ -33,6 +34,12 @@ namespace iCBM.WebApi.Controllers
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _queryDispatcher.QueryAsync(new GetAllExpensesQuery()));
+        }
+
+        [HttpGet("{expenseId}")]
+        public async Task<IActionResult> Get(Guid expenseId)
+        {
+            return Ok(await _queryDispatcher.QueryAsync(new GetExpenseQuery(expenseId)));
         }
     }
 }

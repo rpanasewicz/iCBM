@@ -6,6 +6,7 @@ namespace iCBM.Application.Dtos
 {
     public class ExpenseListItemDto : IMapFrom<Expense>
     {
+        public Guid Id { get; }
         public string Name { get; }
         public MoneyDto Amount { get; }
         public DateTime ExpenseTime { get; }
@@ -15,8 +16,9 @@ namespace iCBM.Application.Dtos
         public string CategoryColorName { get; }
         public string CategoryIcon { get; }
 
-        public ExpenseListItemDto(string name, MoneyDto amount, DateTime expenseTime, Guid categoryId, string supplierName, string categoryName, string categoryColorName, string categoryIcon)
+        public ExpenseListItemDto(Guid id, string name, MoneyDto amount, DateTime expenseTime, Guid categoryId, string supplierName, string categoryName, string categoryColorName, string categoryIcon)
         {
+            Id = id;
             Name = name;
             Amount = amount;
             ExpenseTime = expenseTime;

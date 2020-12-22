@@ -1,8 +1,14 @@
 @url = https://localhost:5001/expenses
 @accessToken = secret
+@expenseId = 00000000-0000-0000-0000-000000000000
 
 ###
 GET {{url}}
+Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
+
+###
+GET {{url}}/{{expenseId}}
 Content-Type:  application/json
 Authorization: Bearer {{accessToken}}
 
