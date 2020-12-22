@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Misio.Common.CQRS.Commands.Abstractions;
 using System.Threading.Tasks;
 using iCBM.Application.Queries.Expenses;
+using Misio.Common.Auth.Attributes;
 using Misio.Common.CQRS.Queries.Abstractions;
 
 namespace iCBM.WebApi.Controllers
 {
+    [JwtAuth]
     [ApiController]
     [Route("[controller]")]
     public class ExpensesController : ControllerBase

@@ -1,12 +1,15 @@
 @url = https://localhost:5001/suppliers
+@accessToken = secret
 
 ###
 GET {{url}}
 Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
 
 ###
 POST {{url}}
 Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "name": "Castodelma",

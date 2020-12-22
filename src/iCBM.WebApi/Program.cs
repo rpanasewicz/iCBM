@@ -20,6 +20,7 @@ using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Misio.Common.Auth;
 using Misio.Common.CQRS.Queries.AutoMapper;
 
 namespace iCBM.WebApi
@@ -59,6 +60,7 @@ namespace iCBM.WebApi
                         .AddCommandHandlerLoggingDecorator()
                         .AddEFCoreRepository()
                         .AddAutoMapperWithDefaultProfile()
+                        .AddJwt()
                         .AddSwaggerGen(c =>
                         {
                             c.SchemaGeneratorOptions = new SchemaGeneratorOptions()

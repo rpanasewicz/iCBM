@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Misio.Common.CQRS.Commands.Abstractions;
 using Misio.Common.CQRS.Queries.Abstractions;
 using System.Threading.Tasks;
+using Misio.Common.Auth.Attributes;
 
 namespace iCBM.WebApi.Controllers
 {
+    [JwtAuth]
     [ApiController]
     [Route("[controller]")]
     public class CategoriesController : ControllerBase

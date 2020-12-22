@@ -1,14 +1,16 @@
 @url = https://localhost:5001/categories
+@accessToken = secret
 @categoryId = 00000000-0000-0000-0000-000000000000
 
 ###
 GET {{url}}
 Content-Type:  application/json
-
+Authorization: Bearer {{accessToken}}
 
 ###
 POST {{url}}
 Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "name": "Other",
@@ -19,6 +21,7 @@ Content-Type:  application/json
 ###
 PUT {{url}}/{{categoryId}}
 Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "name": "Materials",

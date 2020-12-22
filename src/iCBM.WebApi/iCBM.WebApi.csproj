@@ -5,17 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Misio.Common" Version="0.1.68" />
-    <PackageReference Include="Misio.Common.CQRS.Commands" Version="0.1.68" />
-    <PackageReference Include="Misio.Common.CQRS.Events.Commands" Version="0.1.68" />
-    <PackageReference Include="Misio.Common.CQRS.Events" Version="0.1.68" />
-    <PackageReference Include="Misio.Common.Logging.CQRS" Version="0.1.68" />
-    <PackageReference Include="Misio.Common.CQRS.Queries.AutoMapper" Version="0.1.68" />
-    <PackageReference Include="Misio.Domain" Version="0.1.68" />
-    <PackageReference Include="Misio.Common.Auth" Version="0.1.68" />
-    <PackageReference Include="Misio.Domain.CQRS" Version="0.1.68" />
-    <PackageReference Include="Misio.EntityFrameworkCore" Version="0.1.68" />
-    <PackageReference Include="Misio.EntityFrameworkCore.CQRS" Version="0.1.68" />
+    <PackageReference Include="Misio.Common" Version="0.1.69" />
+    <PackageReference Include="Misio.Common.CQRS.Commands" Version="0.1.69" />
+    <PackageReference Include="Misio.Common.CQRS.Events.Commands" Version="0.1.69" />
+    <PackageReference Include="Misio.Common.CQRS.Events" Version="0.1.69" />
+    <PackageReference Include="Misio.Common.Logging.CQRS" Version="0.1.69" />
+    <PackageReference Include="Misio.Common.CQRS.Queries.AutoMapper" Version="0.1.69" />
+    <PackageReference Include="Misio.Domain" Version="0.1.69" />
+    <PackageReference Include="Misio.Common.Auth" Version="0.1.69" />
+    <PackageReference Include="Misio.Domain.CQRS" Version="0.1.69" />
+    <PackageReference Include="Misio.EntityFrameworkCore" Version="0.1.69" />
+    <PackageReference Include="Misio.EntityFrameworkCore.CQRS" Version="0.1.69" />
     <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />

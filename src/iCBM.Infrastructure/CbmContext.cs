@@ -12,6 +12,7 @@ namespace iCBM.Infrastructure
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Color> Colors { get; set; }

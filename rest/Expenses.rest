@@ -1,12 +1,15 @@
 @url = https://localhost:5001/expenses
+@accessToken = secret
 
 ###
 GET {{url}}
 Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
 
 ###
 POST {{url}}
 Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "name": "My first expense",
@@ -16,5 +19,5 @@ Content-Type:  application/json
   "expenseTime": "2020-12-20T13:47:04.143Z",
   "categoryName": "Other",
   "categoryId": null,
-  "supplierId": "3c0d29b8-535e-48d4-8f82-7565b2443c8c"
+  "supplierId": null
 }
