@@ -1,9 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using iCBM.Application.Commands.Notifications;
+﻿using iCBM.Application.Commands.Notifications;
 using Microsoft.AspNetCore.Mvc;
 using Misio.Common.Auth.Attributes;
 using Misio.Common.CQRS.Commands.Abstractions;
+using System.Threading.Tasks;
 
 namespace iCBM.WebApi.Controllers
 {

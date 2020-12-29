@@ -16,14 +16,13 @@ using Misio.Common.CQRS.Events.Commands;
 using Misio.Common.CQRS.Queries;
 using Misio.Common.CQRS.Queries.AutoMapper;
 using Misio.Common.Logging.CQRS;
+using Misio.Common.WebApi;
 using Misio.EntityFrameworkCore;
 using Misio.EntityFrameworkCore.CQRS;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using iCBM.Application.Exceptions;
-using Misio.Common.WebApi;
 
 namespace iCBM.WebApi
 {

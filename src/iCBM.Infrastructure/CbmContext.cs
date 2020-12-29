@@ -1,11 +1,11 @@
-﻿using System;
-using iCBM.Application;
+﻿using iCBM.Application;
 using iCBM.Domain.Enums;
 using iCBM.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Misio.Common.Auth.Abstractions;
 using Misio.EntityFrameworkCore;
+using System;
 
 namespace iCBM.Infrastructure
 {
@@ -25,7 +25,7 @@ namespace iCBM.Infrastructure
         public CbmContext(DbContextOptions<CbmContext> options, IAuthProvider authProvider) : base(options)
         {
             _authProvider = authProvider;
-            
+
             try
             {
                 UserId = _authProvider?.UserId ?? Guid.Empty;

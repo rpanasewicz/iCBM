@@ -1,7 +1,7 @@
-﻿using System;
+﻿using iCBM.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using iCBM.Domain.Common;
 
 namespace iCBM.Domain.Models
 {
@@ -13,13 +13,13 @@ namespace iCBM.Domain.Models
         public DateTime? ExpirationDate { get; private set; }
 
         private ISet<NotificationReads> _reads;
-        
+
         public IEnumerable<NotificationReads> Reads
         {
             get => _reads.AsEnumerable();
             private set => _reads = new HashSet<NotificationReads>(value);
         }
-        
+
         private Notification() { } // For EF
 
         private Notification(Guid id, string title, string body, DateTime publishDated, DateTime? expirationDate, IEnumerable<NotificationReads> reads)

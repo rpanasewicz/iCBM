@@ -1,10 +1,10 @@
 ﻿using iCBM.Domain.Enums;
 using iCBM.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Misio.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 
 namespace iCBM.Infrastructure.EntityConfigurations
 {

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using iCBM.Application.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using Misio.Common.Auth.Abstractions;
 using Misio.Common.Auth.Types;
 using Misio.Common.CQRS.Commands.Abstractions;
@@ -6,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using iCBM.Application.Exceptions;
 
 namespace iCBM.Application.Commands.Auth
 {

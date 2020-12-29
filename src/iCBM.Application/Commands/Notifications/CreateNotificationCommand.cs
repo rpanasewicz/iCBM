@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using iCBM.Domain.Models;
+﻿using iCBM.Domain.Models;
 using Misio.Common.CQRS.Commands.Abstractions;
+using System;
+using System.Threading.Tasks;
 
 namespace iCBM.Application.Commands.Notifications
 {
     public class CreateNotificationCommand : ICommand<Guid>
     {
-        public string Title { get;  }
-        public string Body { get;  }
-        public DateTime PublishDated { get;  }
-        public DateTime? ExpirationDate { get;  }
+        public string Title { get; }
+        public string Body { get; }
+        public DateTime PublishDated { get; }
+        public DateTime? ExpirationDate { get; }
 
         public CreateNotificationCommand(string title, string body, DateTime publishDated, DateTime? expirationDate)
         {

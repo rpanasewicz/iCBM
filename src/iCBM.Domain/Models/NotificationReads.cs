@@ -1,5 +1,5 @@
-﻿using System;
-using Misio.Domain.Types;
+﻿using Misio.Domain.Types;
+using System;
 
 namespace iCBM.Domain.Models
 {

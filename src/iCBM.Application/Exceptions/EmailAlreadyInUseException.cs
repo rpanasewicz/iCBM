@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace iCBM.Application.Exceptions
 {
@@ -10,7 +6,7 @@ namespace iCBM.Application.Exceptions
     {
         public EmailAlreadyInUseException(string email) : base($"Email already in use: {email}")
         {
-            
+
         }
     }
 }

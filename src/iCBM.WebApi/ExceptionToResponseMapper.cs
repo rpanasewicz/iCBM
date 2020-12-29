@@ -1,7 +1,7 @@
-﻿using System;
-using System.Net;
-using iCBM.Application.Exceptions;
+﻿using iCBM.Application.Exceptions;
 using Misio.Common.WebApi.Exceptions;
+using System;
+using System.Net;
 
 namespace iCBM.WebApi
 {

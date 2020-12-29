@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using iCBM.Domain.Models;
+﻿using iCBM.Domain.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Misio.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace iCBM.Infrastructure.EntityConfigurations
 {
