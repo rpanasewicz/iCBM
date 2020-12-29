@@ -12,6 +12,7 @@ namespace iCBM.Application
         DbSet<Notification> Notifications { get; }
         DbSet<NotificationReads> NotificationReads { get; }
         DbSet<User> Users { get; }
+        DbSet<ConstructionStage> ConstructionStages { get; }
 
         DbSet<Currency> Currencies { get; }
         DbSet<Color> Colors { get; }

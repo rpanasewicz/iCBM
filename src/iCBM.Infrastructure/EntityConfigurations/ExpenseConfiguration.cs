@@ -32,6 +32,10 @@ namespace iCBM.Infrastructure.EntityConfigurations
                 .WithMany(e => e.Expenses)
                 .HasForeignKey(e => e.CategoryId);
 
+            entity.HasOne(e => e.ConstructionStage)
+                .WithMany(e => e.Expenses)
+                .HasForeignKey(e => e.ConstructionStageId);
+
             entity.HasOne(e => e.Owner)
                 .WithMany()
                 .HasForeignKey(e => e.OwnerId)
