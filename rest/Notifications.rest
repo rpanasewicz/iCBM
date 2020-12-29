@@ -1,0 +1,29 @@
+@url = https://localhost:5001/notifications
+@urlBase = https://localhost:5001
+@accessToken = secret
+@notificationId = b6cdc543-b132-4408-967e-a5611c2ab599
+
+###
+GET {{urlBase}}/me/notifications
+Authorization: Bearer {{accessToken}}
+
+###
+POST {{url}}
+Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "title": "string",
+  "body": "string",
+  "publishDated": "2020-12-27",
+  "expirationDate": "2020-12-28"
+}
+
+###
+POST {{url}}/{{notificationId}}/markRead
+Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
+
+{
+
+}

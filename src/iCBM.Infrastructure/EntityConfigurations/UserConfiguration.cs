@@ -22,7 +22,7 @@ namespace iCBM.Infrastructure.EntityConfigurations
             {
                 (
                     Guid.Parse("AF76108B-11EE-448B-907F-0DCACCC8ADF6"),
-                    User.New("Harry", "Potter", "harry@example.com",
+                    User.New("Harry", "Potter", "user@example.com",
                         "AQAAAAEAACcQAAAAEAgypWPs8S/vBidt0j/vANTzN25W/BkUbO/MhGadoWBpCcEhFvnJ5VUV+lPLHBQq/Q=="),
                     null
                 )

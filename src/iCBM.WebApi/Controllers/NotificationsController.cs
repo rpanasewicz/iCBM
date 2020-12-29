@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Misio.Common.Auth.Attributes;
 using Misio.Common.CQRS.Commands.Abstractions;
 using System.Threading.Tasks;
+using iCBM.Application.Queries.Notifications;
+using Misio.Common.CQRS.Queries.Abstractions;
 
 namespace iCBM.WebApi.Controllers
 {
@@ -12,10 +14,12 @@ namespace iCBM.WebApi.Controllers
     public class NotificationsController : ControllerBase
     {
         private readonly ICommandDispatcher _commandDispatcher;
+        private readonly IQueryDispatcher _queryDispatcher;
 
-        public NotificationsController(ICommandDispatcher commandDispatcher)
+        public NotificationsController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
         {
             _commandDispatcher = commandDispatcher;
+            _queryDispatcher = queryDispatcher;
         }
 
         [HttpPost]
@@ -30,6 +34,13 @@ namespace iCBM.WebApi.Controllers
         {
             await _commandDispatcher.SendAsync(cmd);
             return Ok();
+        }
+
+        [HttpGet("/me/notifications")]
+        public async Task<IActionResult> GetMyNotifications()
+        {
+            var result = await _queryDispatcher.QueryAsync(new GetMyNotificationsQuery());
+            return Ok(result);
         }
     }
 }
