@@ -5,6 +5,7 @@ using Misio.Common.CQRS.Commands.Abstractions;
 using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using iCBM.Application.Exceptions;
 
 namespace iCBM.Application.Commands.Auth
 {
@@ -44,13 +45,13 @@ namespace iCBM.Application.Commands.Auth
         {
             if (string.IsNullOrEmpty(cmd.Email) || !EmailRegex.IsMatch(cmd.Email))
             {
-                throw new Exception($"Invalid email: {cmd.Email}");
+                throw new InvalidEmailException(cmd.Email);
             }
 
             var exist = await _context.Users.AnyAsync(a => a.Email.Equals(cmd.Email));
             if (exist)
             {
-                throw new Exception($"Email already in use: {cmd.Email}");
+                throw new EmailAlreadyInUseException(cmd.Email);
             }
 
             var passwordHash = _passwordService.Hash(cmd.Password);

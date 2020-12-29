@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using iCBM.Application.Exceptions;
 
 namespace iCBM.Application.Commands.Auth
 {
@@ -50,7 +51,7 @@ namespace iCBM.Application.Commands.Auth
 
             if (user is null || !_passwordService.IsValid(user.Password, cmd.Password))
             {
-                throw new Exception("Invalid credentials");
+                throw new InvalidCredentialsException();
             }
 
             var claims = new Dictionary<string, IEnumerable<string>>

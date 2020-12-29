@@ -22,6 +22,8 @@ using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using iCBM.Application.Exceptions;
+using Misio.Common.WebApi;
 
 namespace iCBM.WebApi
 {
@@ -61,6 +63,7 @@ namespace iCBM.WebApi
                         .AddEFCoreRepository()
                         .AddAutoMapperWithDefaultProfile()
                         .AddJwt()
+                        .AddErrorHandler<ExceptionToResponseMapper>()
                         .AddSwaggerGen(c =>
                         {
                             c.SchemaGeneratorOptions = new SchemaGeneratorOptions()
@@ -98,6 +101,7 @@ namespace iCBM.WebApi
                         c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApp1 v1");
                     });
 
+                    app.UseErrorHandler();
                     app.UseHttpsRedirection();
                     app.UseRouting();
                     app.UseAuthorization();
