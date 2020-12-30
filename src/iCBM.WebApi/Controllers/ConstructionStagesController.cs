@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using iCBM.Application.Commands.ConstructionStages;
+using iCBM.Application.Queries.ConstructionStages;
 using Microsoft.AspNetCore.Mvc;
 using Misio.Common.Auth.Attributes;
 using Misio.Common.CQRS.Commands.Abstractions;
@@ -36,6 +37,12 @@ namespace iCBM.WebApi.Controllers
         {
              await _commandDispatcher.SendAsync(cmd);
              return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _queryDispatcher.QueryAsync(new GetAllConstructionStagesQuery()));
         }
     }
 }
