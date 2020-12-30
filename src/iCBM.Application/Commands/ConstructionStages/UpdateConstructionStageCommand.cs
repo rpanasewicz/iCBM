@@ -47,7 +47,10 @@ namespace iCBM.Application.Commands.ConstructionStages
             if (await _context.ConstructionStages.AnyAsync(s => s.Name == cmd.Name && s.Id != cmd.ConstructionStageId))
                 throw new NameAlreadyExistException(nameof(ConstructionStage), cmd.Name);
 
-            var constructionStage = await _context.ConstructionStages.FindAsync(cmd.ConstructionStageId); 
+            var constructionStage = await _context.ConstructionStages.FindAsync(cmd.ConstructionStageId);
+
+            if (constructionStage is null)
+                throw new ResourceNotFoundException(nameof(ConstructionStage), cmd.ConstructionStageId);
             
             constructionStage.Update(cmd.Name, Enumeration.FromDisplayName<Color>(cmd.Color),
                 cmd.Icon, cmd.PlannedStartDate, cmd.PlannedFinishDate, cmd.ActualStartDate, cmd.ActualFinishDate);
