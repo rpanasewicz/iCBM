@@ -1,7 +1,7 @@
 @url = https://localhost:5001/notifications
 @urlBase = https://localhost:5001
 @accessToken = secret
-@notificationId = b6cdc543-b132-4408-967e-a5611c2ab599
+@notificationId = 00000000-0000-0000-0000-000000000000
 
 ###
 GET {{urlBase}}/me/notifications

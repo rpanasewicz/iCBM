@@ -1,0 +1,38 @@
+@url = https://localhost:5001/constructionStages
+@accessToken = secret
+@constructionStageId = 00000000-0000-0000-0000-000000000000
+
+###
+GET {{url}}
+Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
+
+###
+POST {{url}}
+Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "name": "Papers",
+  "color": "blue",
+  "icon": "house",
+  "plannedStartDate": "2020-06-30",
+  "plannedFinishDate": "2020-12-30",
+  "actualStartDate": null,
+  "actualFinishDate": null
+}
+
+###
+PUT {{url}}/{{constructionStageId}}
+Content-Type:  application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "name": "Papers",
+  "color": "red",
+  "icon": "house",
+  "plannedStartDate": "2020-06-30",
+  "plannedFinishDate": "2020-12-30",
+  "actualStartDate": null,
+  "actualFinishDate": null
+}
