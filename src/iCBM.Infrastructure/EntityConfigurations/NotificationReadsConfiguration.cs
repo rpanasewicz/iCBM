@@ -12,6 +12,9 @@ namespace iCBM.Infrastructure.EntityConfigurations
 
         public override void ConfigureFields(EntityTypeBuilder<NotificationReads> entity)
         {
+            // to disable warning
+            entity.HasQueryFilter(a => true);
+            
             entity.HasKey(e => new { e.UserId, e.NotificationId });
         }
 
