@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using iCBM.Infrastructure;
 
 namespace iCBM.Infrastructure.Migrations
 {
     [DbContext(typeof(CbmContext))]
-    partial class CbmContextModelSnapshot : ModelSnapshot
+    [Migration("20210103130002_ChangeIcon")]
+    partial class ChangeIcon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,42 +39,97 @@ namespace iCBM.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "primary"
+                            Name = "red"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "secondary"
+                            Name = "pink"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "success"
+                            Name = "purple"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "danger"
+                            Name = "deep-purple"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "warning"
+                            Name = "indigo"
                         },
                         new
                         {
                             Id = 6,
-                            Name = "info"
+                            Name = "blue"
                         },
                         new
                         {
                             Id = 7,
-                            Name = "light"
+                            Name = "light-blue"
                         },
                         new
                         {
                             Id = 8,
-                            Name = "dark"
+                            Name = "cyan"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "teal"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "green"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "light-green"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "lime"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "yellow"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "amber"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "orange"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "deep-orange"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "brown"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "blue-grey"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "grey"
                         });
                 });
 
@@ -1038,7 +1095,7 @@ namespace iCBM.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("fe9fac56-7230-4c16-81c0-be9b61fdc861"),
-                            ColorId = 2,
+                            ColorId = 6,
                             CreatedBy = "System",
                             CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Icon = "store",
@@ -1064,7 +1121,7 @@ namespace iCBM.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("1c7fdef1-1db4-45be-9058-eeb22d80ed01"),
-                            ColorId = 5,
+                            ColorId = 13,
                             CreatedBy = "System",
                             CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Icon = "store",
@@ -1153,7 +1210,7 @@ namespace iCBM.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("0a7bc129-c7d5-401c-864c-6f23aabd5f10"),
-                            ColorId = 5,
+                            ColorId = 6,
                             CreatedBy = "System",
                             CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Icon = "house",
@@ -1168,7 +1225,7 @@ namespace iCBM.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("68880b0e-cd7d-44b3-ba87-11c8904af433"),
-                            ColorId = 3,
+                            ColorId = 6,
                             CreatedBy = "System",
                             CreatedOn = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Icon = "house",

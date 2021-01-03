@@ -30,19 +30,19 @@ namespace iCBM.Infrastructure.EntityConfigurations
             {
                 (
                     Guid.Parse("3a4d56e5-c062-4484-92d9-4a2347eaf809"),
-                    ConstructionStage.New("SSO", Color.Blue, "house", Convert.ToDateTime("2021-05-01"),
+                    ConstructionStage.New("SSO", Color.Info, "house", Convert.ToDateTime("2021-05-01"),
                         Convert.ToDateTime("2021-09-01"), null, null),
                     Guid.Parse("AF76108B-11EE-448B-907F-0DCACCC8ADF6")
                 ),
                 (
                     Guid.Parse("0a7bc129-c7d5-401c-864c-6f23aabd5f10"),
-                    ConstructionStage.New("SSZ", Color.Blue, "house", Convert.ToDateTime("2021-09-01"),
+                    ConstructionStage.New("SSZ", Color.Warning, "house", Convert.ToDateTime("2021-09-01"),
                         Convert.ToDateTime("2021-12-01"), null, null),
                     Guid.Parse("AF76108B-11EE-448B-907F-0DCACCC8ADF6")
                 ),
                 (
                     Guid.Parse("68880b0e-cd7d-44b3-ba87-11c8904af433"),
-                    ConstructionStage.New("Finishing", Color.Blue, "house", Convert.ToDateTime("2022-01-01"),
+                    ConstructionStage.New("Finishing", Color.Success, "house", Convert.ToDateTime("2022-01-01"),
                         Convert.ToDateTime("2022-05-01"), null, null),
                     Guid.Parse("AF76108B-11EE-448B-907F-0DCACCC8ADF6")
                 )

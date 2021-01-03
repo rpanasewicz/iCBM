@@ -4,25 +4,14 @@ namespace iCBM.Domain.Enums
 {
     public class Color : Enumeration
     {
-        public static readonly Color Red = new Color(1, "red");
-        public static readonly Color Pink = new Color(2, "pink");
-        public static readonly Color Purple = new Color(3, "purple");
-        public static readonly Color DeepPurple = new Color(4, "deep-purple");
-        public static readonly Color Indigo = new Color(5, "indigo");
-        public static readonly Color Blue = new Color(6, "blue");
-        public static readonly Color LightBlue = new Color(7, "light-blue");
-        public static readonly Color Cyan = new Color(8, "cyan");
-        public static readonly Color Teal = new Color(9, "teal");
-        public static readonly Color Green = new Color(10, "green");
-        public static readonly Color LightGreen = new Color(11, "light-green");
-        public static readonly Color Lime = new Color(12, "lime");
-        public static readonly Color Yellow = new Color(13, "yellow");
-        public static readonly Color Amber = new Color(14, "amber");
-        public static readonly Color Orange = new Color(15, "orange");
-        public static readonly Color DeepOrange = new Color(16, "deep-orange");
-        public static readonly Color Brown = new Color(17, "brown");
-        public static readonly Color BlueGrey = new Color(18, "blue-grey");
-        public static readonly Color Grey = new Color(19, "grey");
+        public static readonly Color Primary = new Color(1, "primary");
+        public static readonly Color Secondary = new Color(2, "secondary");
+        public static readonly Color Success = new Color(3, "success");
+        public static readonly Color Danger = new Color(4, "danger");
+        public static readonly Color Warning = new Color(5, "warning");
+        public static readonly Color Info = new Color(6, "info");
+        public static readonly Color Light = new Color(7, "light");
+        public static readonly Color Dark = new Color(8, "dark");
 
         public Color(int id, string name) : base(id, name)
         {
