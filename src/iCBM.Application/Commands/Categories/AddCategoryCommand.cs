@@ -5,6 +5,7 @@ using Misio.Common.CQRS.Commands.Abstractions;
 using Misio.Domain.Types;
 using System;
 using System.Threading.Tasks;
+using iCBM.Application.Exceptions;
 
 namespace iCBM.Application.Commands.Categories
 {
@@ -35,7 +36,7 @@ namespace iCBM.Application.Commands.Categories
         {
             if (await _ctx.Categories.AnyAsync(c => c.Name.Equals(cmd.Name)))
             {
-                throw new Exception();
+                throw new NameAlreadyExistException(nameof(Category), cmd.Name);
             }
 
             var category = Category.New(cmd.Name, Enumeration.FromDisplayName<Color>(cmd.Color), cmd.Icon);

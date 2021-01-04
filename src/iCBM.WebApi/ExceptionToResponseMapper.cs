@@ -16,7 +16,7 @@ namespace iCBM.WebApi
                 InvalidCredentialsException invalidCredentialsException => new ExceptionResponse("invalid_credentials", ex.Message, HttpStatusCode.BadRequest),
                 InvalidEmailException invalidEmailException => new ExceptionResponse("invalid_email", ex.Message, HttpStatusCode.BadRequest),
                 ResourceNotFoundException resourceNotFoundException => new ExceptionResponse("not_found", ex.Message, HttpStatusCode.NotFound),
-                NameAlreadyExistException nameAlreadyExistException => new ExceptionResponse("name_in_use", ex.Message, HttpStatusCode.NotFound),
+                NameAlreadyExistException nameAlreadyExistException => new ExceptionResponse("name_in_use", ex.Message, HttpStatusCode.BadRequest),
                 _ => null
             };
         }
