@@ -28,17 +28,17 @@ namespace iCBM.Infrastructure.EntityConfigurations
             {
                 (
                     new Guid("fe9fac56-7230-4c16-81c0-be9b61fdc861"),
-                    Category.New("Materials", Color.Secondary, "store"),
+                    Category.New("Materials", Color.Secondary, "shop"),
                     Guid.Parse("AF76108B-11EE-448B-907F-0DCACCC8ADF6")
                 ),
                 (
                     new Guid("fd547340-199e-49be-88ed-3d7570ddaf4b"),
-                    Category.New("Services", Color.Primary, "store"),
+                    Category.New("Services", Color.Primary, "shop"),
                     Guid.Parse("AF76108B-11EE-448B-907F-0DCACCC8ADF6")
                 ),
                 (
                     new Guid("1c7fdef1-1db4-45be-9058-eeb22d80ed01"),
-                    Category.New("Other", Color.Warning, "store"),
+                    Category.New("Other", Color.Warning, "shop"),
                     Guid.Parse("AF76108B-11EE-448B-907F-0DCACCC8ADF6")
                 )
             };
