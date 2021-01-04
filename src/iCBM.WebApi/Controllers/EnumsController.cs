@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using iCBM.Application.Dtos;
 using iCBM.Domain.Enums;
@@ -20,7 +21,7 @@ namespace iCBM.WebApi.Controllers
         [HttpGet("colors")]
         public IActionResult GetColors()
         {
-            return Ok(_mapper.Map<ColorDto>(Enumeration.GetAll<Color>()));
+            return Ok(_mapper.Map<IEnumerable<ColorDto>>(Enumeration.GetAll<Color>()));
         }
     }
 }
