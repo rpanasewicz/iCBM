@@ -5,10 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Misio.Common.Auth" Version="0.1.85" />
-    <PackageReference Include="Misio.Common.CQRS.Commands" Version="0.1.85" />
-    <PackageReference Include="Misio.Common.CQRS.Queries" Version="0.1.85" />
-    <PackageReference Include="Misio.Common.CQRS.Queries.AutoMapper" Version="0.1.85" />
+    <PackageReference Include="Misio.Common.Auth" Version="0.1.86" />
+    <PackageReference Include="Misio.Common.CQRS.Commands" Version="0.1.86" />
+    <PackageReference Include="Misio.Common.CQRS.Queries" Version="0.1.86" />
+    <PackageReference Include="Misio.Common.CQRS.Queries.AutoMapper" Version="0.1.86" />
   </ItemGroup>
 
   <ItemGroup>

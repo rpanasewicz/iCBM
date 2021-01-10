@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.1" />
-    <PackageReference Include="Misio.EntityFrameworkCore" Version="0.1.85" />
+    <PackageReference Include="Misio.EntityFrameworkCore" Version="0.1.86" />
   </ItemGroup>
 
   <ItemGroup>
