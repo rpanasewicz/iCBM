@@ -23,5 +23,11 @@ namespace iCBM.WebApi.Controllers
         {
             return Ok(_mapper.Map<IEnumerable<ColorDto>>(Enumeration.GetAll<Color>()));
         }
+
+        [HttpGet("currencies")]
+        public IActionResult GetCurrencies()
+        {
+            return Ok(_mapper.Map<IEnumerable<CurrencyDto>>(Enumeration.GetAll<Currency>()));
+        }
     }
 }

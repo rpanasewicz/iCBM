@@ -1,6 +1,8 @@
 @url = https://localhost:5001/expenses
+
 @accessToken = secret
 @expenseId = 00000000-0000-0000-0000-000000000000
+@constructionStageId = null
 
 ###
 GET {{url}}
@@ -25,5 +27,6 @@ Authorization: Bearer {{accessToken}}
   "expenseTime": "2020-12-20T13:47:04.143Z",
   "categoryName": "Other",
   "categoryId": null,
-  "supplierId": null
+  "supplierId": null,
+  "constructionStageId": {{constructionStageId}
 }

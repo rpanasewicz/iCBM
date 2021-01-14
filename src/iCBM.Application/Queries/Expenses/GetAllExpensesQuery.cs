@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace iCBM.Application.Queries.Expenses
 {
-    public class GetAllExpensesQuery : IQuery<List<ExpenseListItemDto>>
+    public class GetAllExpensesQuery : IQuery<List<ExpenseDto>>
     {
     }
 
-    public class GetAllExpensesQueryHandler : IQueryHandler<GetAllExpensesQuery, List<ExpenseListItemDto>>
+    public class GetAllExpensesQueryHandler : IQueryHandler<GetAllExpensesQuery, List<ExpenseDto>>
     {
         private readonly ICbmContext _ctx;
         private readonly IMapper _mapper;
@@ -22,7 +22,7 @@ namespace iCBM.Application.Queries.Expenses
             _mapper = mapper;
         }
 
-        public Task<List<ExpenseListItemDto>> Handle(GetAllExpensesQuery query)
-            => _ctx.Expenses.ProjectToListAsync<ExpenseListItemDto>(_mapper.ConfigurationProvider);
+        public Task<List<ExpenseDto>> Handle(GetAllExpensesQuery query)
+            => _ctx.Expenses.ProjectToListAsync<ExpenseDto>(_mapper.ConfigurationProvider);
     }
 }
