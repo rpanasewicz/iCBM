@@ -1,6 +1,9 @@
 ﻿using iCBM.Application.Commands.Auth;
+using iCBM.Application.Queries.Auth;
 using Microsoft.AspNetCore.Mvc;
+using Misio.Common.Auth.Attributes;
 using Misio.Common.CQRS.Commands.Abstractions;
+using Misio.Common.CQRS.Queries.Abstractions;
 using System.Threading.Tasks;
 
 namespace iCBM.WebApi.Controllers
@@ -10,10 +13,13 @@ namespace iCBM.WebApi.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ICommandDispatcher _commandDispatcher;
+        private readonly IQueryDispatcher queryDispatcher;
 
-        public AuthController(ICommandDispatcher commandDispatcher)
+        public AuthController(ICommandDispatcher commandDispatcher, 
+            IQueryDispatcher queryDispatcher)
         {
             _commandDispatcher = commandDispatcher;
+            this.queryDispatcher = queryDispatcher;
         }
 
         [HttpPost("sign-in")]
@@ -28,6 +34,13 @@ namespace iCBM.WebApi.Controllers
         {
             await _commandDispatcher.SendAsync(cmd);
             return Ok();
+        }
+
+        [JwtAuth]
+        [HttpGet("me")]
+        public async Task<IActionResult> Me()
+        {
+            return Ok(await queryDispatcher.QueryAsync(new MeQuery()));
         }
     }
 }
